@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/RandomItem" xmlns:tns="http://www.example.org/RandomItem" elementFormDefault="qualified">
+
+    <element name="addRandomItemRequest">
+    	<complexType>
+    		<sequence>
+    			<element name="name" type="string"></element>
+    			<element name="type" type="string"></element>
+    			<element name="id" type="long"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+    
+
+    <element name="addRandomItemResponse">
+    	<complexType>
+    		<sequence>
+    			<element name="serviceStatus" type="tns:serviceStatus"></element>
+    			<element name="randomItemInfo" type="tns:randomItemInfo"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+    
+    <element name="deleteRandomItemRequest">
+    	<complexType>
+    		<sequence>
+    			<element name="randomItemId" type="long"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+
+    <element name="deleteRandomItemResponse">
+    	<complexType>
+    		<sequence>
+    			<element name="serviceStatus" type="tns:serviceStatus"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+    
+    <element name="getAllRandomItemsRequest">
+    	<simpleType>
+    		<restriction base="string"></restriction>
+    	</simpleType>
+    </element>
+    
+    <element name="getAllRandomItemsResponse">
+    	<complexType>
+    		<sequence>
+    			<element name="randomItemInfo" type="tns:randomItemInfo" maxOccurs="unbounded" minOccurs="1"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+    
+    <element name="getRandomItemByIdRequest">
+    	<complexType>
+    		<sequence>
+    			<element name="id" type="long"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+    
+    <element name="getRandomItemByIdResponse">
+    	<complexType>
+    		<sequence>
+    			<element name="randomItemInfo" type="tns:randomItemInfo"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+    
+    <element name="updateRandomItemRequest">
+    	<complexType>
+    		<sequence>
+    			<element name="randomItemInfo" type="tns:randomItemInfo"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+    
+    <element name="updateRandomItemResponse">
+    	<complexType>
+    		<sequence>
+    			<element name="serviceStatus" type="tns:serviceStatus"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+    
+    <complexType name="randomItemInfo">
+    	<sequence>
+    		<element name="id" type="long"></element>
+    		<element name="name" type="string"></element>
+    		<element name="type" type="string"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="serviceStatus">
+    	<sequence>
+    		<element name="statusCode" type="string"></element>
+    		<element name="message" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>
