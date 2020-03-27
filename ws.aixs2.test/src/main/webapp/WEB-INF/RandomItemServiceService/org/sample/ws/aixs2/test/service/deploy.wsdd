@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from RandomItemServiceService WSDL service -->
+
+  <service name="RandomItemService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.test.aixs2.ws.sample.org"/>
+      <parameter name="wsdlServiceElement" value="RandomItemServiceService"/>
+      <parameter name="schemaQualified" value="http://service.test.aixs2.ws.sample.org,http://entity.test.aixs2.ws.sample.org"/>
+      <parameter name="wsdlServicePort" value="RandomItemService"/>
+      <parameter name="className" value="org.sample.ws.aixs2.test.service.RandomItemService"/>
+      <parameter name="wsdlPortType" value="RandomItemService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.test.aixs2.ws.sample.org" xmlns:retNS="http://service.test.aixs2.ws.sample.org" xmlns:rtns="http://entity.test.aixs2.ws.sample.org" name="getRandomItemById" qname="operNS:getRandomItemById" returnQName="retNS:getRandomItemByIdReturn" returnType="rtns:RandomItem" soapAction="">
+        <parameter xmlns:pns="http://service.test.aixs2.ws.sample.org" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:long"/>
+      </operation>
+      <operation xmlns:operNS="http://service.test.aixs2.ws.sample.org" name="addRandomItem" qname="operNS:addRandomItem" soapAction="">
+        <parameter xmlns:pns="http://service.test.aixs2.ws.sample.org" xmlns:tns="http://entity.test.aixs2.ws.sample.org" qname="pns:r" type="tns:RandomItem"/>
+      </operation>
+      <parameter name="allowedMethods" value="addRandomItem getRandomItemById"/>
+
+      <typeMapping xmlns:ns="http://entity.test.aixs2.ws.sample.org" qname="ns:RandomItem" type="java:org.sample.ws.aixs2.test.entity.RandomItem" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

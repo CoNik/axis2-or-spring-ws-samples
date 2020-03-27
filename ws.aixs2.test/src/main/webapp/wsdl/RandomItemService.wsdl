@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.test.aixs2.ws.sample.org" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.test.aixs2.ws.sample.org" xmlns:intf="http://service.test.aixs2.ws.sample.org" xmlns:tns1="http://entity.test.aixs2.ws.sample.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.test.aixs2.ws.sample.org" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://entity.test.aixs2.ws.sample.org"/>
+   <element name="getRandomItemById">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getRandomItemByIdResponse">
+    <complexType>
+     <sequence>
+      <element name="getRandomItemByIdReturn" type="tns1:RandomItem"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addRandomItem">
+    <complexType>
+     <sequence>
+      <element name="r" type="tns1:RandomItem"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addRandomItemResponse">
+    <complexType/>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://entity.test.aixs2.ws.sample.org" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="RandomItem">
+    <sequence>
+     <element name="id" type="xsd:long"/>
+     <element name="rname" nillable="true" type="xsd:string"/>
+     <element name="rtype" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getRandomItemByIdResponse">
+
+      <wsdl:part element="impl:getRandomItemByIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRandomItemByIdRequest">
+
+      <wsdl:part element="impl:getRandomItemById" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addRandomItemRequest">
+
+      <wsdl:part element="impl:addRandomItem" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addRandomItemResponse">
+
+      <wsdl:part element="impl:addRandomItemResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="RandomItemService">
+
+      <wsdl:operation name="getRandomItemById">
+
+         <wsdl:input message="impl:getRandomItemByIdRequest" name="getRandomItemByIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getRandomItemByIdResponse" name="getRandomItemByIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRandomItem">
+
+         <wsdl:input message="impl:addRandomItemRequest" name="addRandomItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addRandomItemResponse" name="addRandomItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="RandomItemServiceSoapBinding" type="impl:RandomItemService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getRandomItemById">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getRandomItemByIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getRandomItemByIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRandomItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addRandomItemRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addRandomItemResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="RandomItemServiceService">
+
+      <wsdl:port binding="impl:RandomItemServiceSoapBinding" name="RandomItemService">
+
+         <wsdlsoap:address location="http://localhost:8080/ws.aixs2.test/services/RandomItemService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
